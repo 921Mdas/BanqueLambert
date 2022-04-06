@@ -1,0 +1,232 @@
+@import "../../util.scss";
+
+.allowance {
+  & > :nth-child(n) {
+    margin-bottom: 1em;
+    border: solid 1px rgba(168, 168, 168, 0.027);
+  }
+  .spin {
+    @include flexi(center, center, row, 1em);
+  }
+
+  .allowance_title {
+    @include flexi(center, center, row, 1em);
+    height: max-content;
+    background-color: var(--base-grey);
+    border-radius: var(--border-radius);
+
+    .title_icon {
+      font-size: 2em;
+    }
+  }
+
+  h1 {
+    padding: 1em 0;
+    font-size: clamp(30px, 5vw, 50px);
+  }
+
+  .Allowance_Table {
+    width: 100%;
+    height: 45vh;
+
+    .payment_tab span {
+      background-color: green;
+      color: white;
+      border-radius: var(--border-radius);
+      padding: 4px 5px;
+    }
+
+    .person_allowance {
+      background: grey;
+      border-radius: 50%;
+      font-size: 15px;
+      padding: 2px;
+      color: white;
+    }
+
+    .money_in {
+      @include flexi(center, center, row, 0.5px);
+    }
+
+    .arrow_in {
+      color: rgba(255, 255, 255, 0.482);
+    }
+
+    .act_icons {
+      font-size: 20px;
+    }
+
+    .delete {
+      color: rgb(167, 5, 5);
+    }
+
+    .update {
+      color: skyblue;
+    }
+
+    button {
+      width: 30px !important;
+      border: none;
+      border-radius: var(--border-radius);
+      background: none;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .action_content {
+      @include flexi(center, center, row, 0.5em);
+      width: 50px;
+    }
+
+    .action_table {
+      width: 30px;
+    }
+
+    &:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+  }
+
+  .send_allowance {
+    .phone_icon {
+      vertical-align: super;
+      margin-top: 6px;
+      font-size: var(--small-iconsize);
+    }
+    .allowance-add-title {
+      @include flexi(center, center, row, 1em);
+      padding: 0.5em 0;
+      color: var(--base-grey);
+    }
+
+    margin-top: 1em;
+  }
+}
+
+.form_parent {
+  @include flexi(space-between, center, column, 1em);
+  box-shadow: var(--card-standard-shadow);
+  border: var(--border-card);
+  border-radius: var(--border-radius);
+
+  &:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  & > :nth-child(n) {
+    margin-bottom: 1em;
+  }
+  .toggle_form {
+    text-align: center;
+  }
+}
+.formulaire {
+  width: 100%;
+  display: grid;
+  padding: 0 1em;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+
+  gap: 0.2em;
+  animation: showform 1s ease 1 forwards;
+  position: relative;
+
+  .error_container {
+    display: block;
+  }
+
+  .transfer {
+    justify-self: self-start;
+    align-self: flex-start;
+    min-width: 100%;
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:hover {
+      background-color: lightblue;
+    }
+  }
+
+  .transfer:active .sending_icon {
+    animation: flowsend 1s ease 0.5s 1 forwards;
+  }
+
+  .redish {
+    border: solid 1px rgb(121, 2, 2);
+  }
+
+  .greenish {
+    border: solid 1px rgb(1, 66, 1);
+  }
+
+  .form_notif {
+    padding: 0.5em 0;
+    color: rgb(121, 2, 2);
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+    @include flexi(center, center, row, 1em);
+  }
+
+  .sending_icon_update {
+    color: white;
+    font-size: 20px;
+  }
+}
+
+.bounce {
+  background-color: red;
+  color: red;
+  animation: bouncing 1s ease infinite forwards;
+}
+
+.dontbounce {
+  color: green;
+  background-color: green;
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes showform {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes flowsend {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}

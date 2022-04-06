@@ -1,0 +1,30 @@
+@import "./components/Allowance/Allowance.scss";
+@import "./components/construction/construction.scss";
+@import "./components/Home/Home.scss";
+@import "./components/Allowance/summary/Total.scss";
+@import "./util.scss";
+@import "./components/Allowance/TrendingGraph/TrendingG.scss";
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Helvetica";
+  padding: 1em;
+}

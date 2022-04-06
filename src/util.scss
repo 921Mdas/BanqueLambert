@@ -1,0 +1,19 @@
+:root {
+  font-family: "Lato", sans-serif, Arial, Helvetica, sans-serif;
+  --border-radius: 5px;
+  --small-iconsize: 20px;
+
+  // colors
+  --base-grey: rgb(128, 128, 128);
+  --card-shadow-hover: 0px 12px 20px -4px rgba(0, 0, 0, 0.1);
+  --card-standard-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.575);
+  --border-card: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+@mixin flexi($jc, $ai, $fd, $gap) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $fd;
+  gap: $gap;
+}
