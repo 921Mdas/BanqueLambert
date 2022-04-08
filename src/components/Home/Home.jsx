@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../Home/Home.scss";
 import { getFamilyMembers } from "../../store/actions/index.actions";
@@ -9,7 +9,7 @@ import CONSTRUCTION from "../construction/construction";
 
 const Home = () => {
   const FAMILY_MEMBERS = useSelector(state => state.Default_Reducer);
-
+  const [globalEvent, setglobalEvent] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

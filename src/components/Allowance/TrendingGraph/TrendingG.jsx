@@ -56,10 +56,10 @@ const data = [
 
 const TrendingG = ({ ALLOWANCE_SPONSORS }) => {
   return (
-    <div style={{ width: "100%", height: "200px" }}>
+    <div className="allowance_graph" style={{ width: "100%", height: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
-          width={500}
+          width={550}
           height={400}
           data={ALLOWANCE_SPONSORS}
           margin={{
