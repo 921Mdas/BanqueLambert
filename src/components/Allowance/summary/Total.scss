@@ -19,7 +19,7 @@
   }
 
   .perc_right {
-    color: rgb(128, 0, 32);
+    color: var(--primary-error);
     width: 45px;
     height: 35px;
     border-radius: var(--border-radius);
@@ -32,7 +32,7 @@
 
   .perc_left {
     @extend .perc_right;
-    color: green;
+    color: var(--primary-green);
   }
 
   .perc_allowance {
@@ -57,7 +57,7 @@
   }
 
   .im_right {
-    background-color: rgb(133, 2, 2);
+    background-color: var(--primary-error);
     color: white;
   }
 

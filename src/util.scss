@@ -5,8 +5,17 @@
 
   // colors
   --base-grey: rgb(128, 128, 128);
+  --primary-purple: #8884d8;
+  --primary-light-purple: #c6c3f8;
+  --primary-white: white;
+  --primary-error: rgb(133, 2, 2);
+  --primary-green: rgb(0, 128, 0);
+  --primary-light-green: rgb(132, 179, 132);
+  --primary-light-blue: rgb(135, 206, 235);
+  // shadow
   --card-shadow-hover: 0px 12px 20px -4px rgba(0, 0, 0, 0.1);
   --card-standard-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.575);
+  // border
   --border-card: solid 1px rgba(0, 0, 0, 0.1);
 }
 

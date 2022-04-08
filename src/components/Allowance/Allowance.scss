@@ -12,7 +12,7 @@
   .allowance_title {
     @include flexi(center, center, row, 1em);
     height: max-content;
-    background-color: var(--base-grey);
+    background-color: var(--primary-light-purple);
     border-radius: var(--border-radius);
 
     .title_icon {
@@ -30,14 +30,14 @@
     height: 45vh;
 
     .payment_tab span {
-      background-color: green;
+      background-color: var(--primary-green);
       color: white;
       border-radius: var(--border-radius);
       padding: 4px 5px;
     }
 
     .person_allowance {
-      background: grey;
+      background: var(--base-grey);
       border-radius: 50%;
       font-size: 15px;
       padding: 2px;
@@ -49,7 +49,7 @@
     }
 
     .arrow_in {
-      color: rgba(255, 255, 255, 0.482);
+      color: var(--primary-light-green);
     }
 
     .act_icons {
@@ -57,11 +57,11 @@
     }
 
     .delete {
-      color: rgb(167, 5, 5);
+      color: var(--primary-error);
     }
 
     .update {
-      color: skyblue;
+      color: var(--primary-light-blue);
     }
 
     button {
@@ -147,7 +147,7 @@
     }
 
     &:hover {
-      background-color: lightblue;
+      background-color: var(--primary-light-blue);
     }
   }
 
@@ -156,16 +156,16 @@
   }
 
   .redish {
-    border: solid 1px rgb(121, 2, 2);
+    border: solid 1px var(--primary-error);
   }
 
   .greenish {
-    border: solid 1px rgb(1, 66, 1);
+    border: solid 1px var(--primary-green);
   }
 
   .form_notif {
     padding: 0.5em 0;
-    color: rgb(121, 2, 2);
+    color: var(--primary-error);
     display: flex;
     font-size: 12px;
     text-align: center;
@@ -179,14 +179,14 @@
 }
 
 .bounce {
-  background-color: red;
-  color: red;
+  background-color: var(--primary-error);
+  color: var(--primary-error);
   animation: bouncing 1s ease infinite forwards;
 }
 
 .dontbounce {
-  color: green;
-  background-color: green;
+  color: var(--primary-green);
+  background-color: var(--primary-green);
 }
 
 @keyframes bouncing {

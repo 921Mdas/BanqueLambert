@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import ReduxStore from "./store/index_store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,7 @@ ReactDOM.render(
   <Provider store={ReduxStore()}>
     <React.StrictMode>
       <BrowserRouter>
+        <Navbar />
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
