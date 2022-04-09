@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { AiOutlineBank } from "react-icons/ai";
+import { SiFampay } from "react-icons/si";
 import {
   AiTwotoneEdit,
   AiOutlineArrowRight,
@@ -39,6 +41,9 @@ const ALLOWANCE = () => {
   );
   const dispatch = useDispatch();
   const rows = ALLOWANCE_SPONSORS;
+  const sortedRows = rows?.sort((a, b) => (a.id > b.id ? -1 : 1));
+
+  console.log("sorted rows", sortedRows);
 
   const sendData = async (url, data) => {
     await axios.post(url, data);
@@ -76,7 +81,7 @@ const ALLOWANCE = () => {
     <div className="allowance">
       <div className="allowance_title">
         <span>
-          <FaFileInvoiceDollar className="title_icon" />
+          <SiFampay className="title_icon" />
         </span>
         <h1>Paiements Mensuels</h1>
       </div>
@@ -109,7 +114,7 @@ const ALLOWANCE = () => {
             </TableHead>
             <TableBody>
               {rows &&
-                rows.map(row => (
+                sortedRows.map(row => (
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

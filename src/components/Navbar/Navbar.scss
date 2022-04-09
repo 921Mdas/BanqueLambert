@@ -16,6 +16,8 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  background: var(--pale-purple);
+  border-radius: var(--border-radius);
 }
 
 .menu_icon {
@@ -24,12 +26,19 @@
 
 .hamburger_btn {
   position: absolute;
-  background: var(--primary-purple);
-  border-radius: 50%;
+  background: var(--pale-purple);
+  border-radius: var(--border-radius);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.226),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
   top: 75px;
   left: 5px;
   padding: 2px;
   font-size: 25px;
+  z-index: 2;
 }
 
 .close {
@@ -39,7 +48,7 @@
 .top_nav {
   background: var(--primary-purple);
   width: 100%;
-  height: 30vh;
+  height: 33vh;
   padding: 1em;
   text-align: center;
 
@@ -47,6 +56,14 @@
     border: solid 1px var(--primary-light-purple);
     margin-top: 25%;
     padding: 10px;
+    border-radius: var(--border-radius);
+
+    h3 {
+      color: var(--primary-white);
+    }
+    h6 {
+      color: var(--primary-light-purple);
+    }
   }
 }
 
@@ -58,12 +75,22 @@
 
   ul {
     padding: 0;
-    height: 0vh;
+    height: 70%;
+    position: relative;
 
-    li {
+    .navigation_links {
+      &:last-child {
+        position: absolute;
+        bottom: 30px;
+      }
+    }
+
+    li,
+    .navigation_links {
       @include flexi(flex-start, center, row, 1em);
       cursor: pointer;
-
+      text-decoration: none;
+      color: var(--base-grey);
       span {
         padding: 0 5px;
         border-radius: var(--border-radius);
@@ -97,10 +124,6 @@
       &:nth-child(n):not(:last-child) {
         margin-bottom: 1em;
       }
-      &:last-child {
-        position: absolute;
-        bottom: 30px;
-      }
     }
   }
 }
@@ -109,12 +132,14 @@
 
 .menu_nav {
   position: fixed;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0%;
-  width: 100%;
-  background: var(--primary-light-purple);
-  box-shadow: var(--card-standard-shadow);
+  width: 90%;
+
+  @extend .purple_glass;
   z-index: 3;
+  border-radius: var(--border-radius-10);
 
   .icon_menu_bottom {
     font-size: 25px;
@@ -127,14 +152,20 @@
     padding: 10px 15px;
     @include flexi(space-between, center, row, 1em);
 
+    .bottom_menu_links {
+      cursor: pointer;
+      text-decoration: none;
+    }
+
     li {
       text-decoration: none;
       list-style: none;
       @include flexi(center, center, column, 0);
+      color: var(--primary-light-purple);
 
       &:hover,
       &:active {
-        color: var(--primary-purple);
+        color: white;
       }
 
       span {

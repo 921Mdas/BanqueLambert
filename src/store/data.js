@@ -10,7 +10,6 @@ import {
 const API = async URL => {
   const response = await axios.get(URL);
   const results = await response.data;
-  console.log(results, "called hellow");
   return results;
 };
 

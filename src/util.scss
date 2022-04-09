@@ -1,17 +1,29 @@
 :root {
   font-family: "Lato", sans-serif, Arial, Helvetica, sans-serif;
   --border-radius: 5px;
+  --border-radius-10: 10px;
   --small-iconsize: 20px;
 
   // colors
   --base-grey: rgb(128, 128, 128);
   --primary-purple: #8884d8;
   --primary-light-purple: #c6c3f8;
+  --background-maincolor: #e3f3fd;
+  --strong-purple: #5e35b1;
+  --deep-purple: #4527a0;
+  --pale-purple: #ede7f6;
   --primary-white: white;
-  --primary-error: rgb(133, 2, 2);
-  --primary-green: rgb(0, 128, 0);
-  --primary-light-green: rgb(132, 179, 132);
-  --primary-light-blue: rgb(135, 206, 235);
+  --primary-error: rgb(190, 35, 35);
+  --primary-green: #00c852;
+  --primary-light-green: #baf6ca;
+  --background-blue: #1e88e5;
+  --deep-blue: #1665c0;
+  --button-blue: #0d6efd;
+  --primary-light-blue: #90caf9;
+
+  --primary-yellow: #ffc008;
+  --secondary-yellow-strong: #ffe495;
+  --secondary-yellow: #ffe4958e;
   // shadow
   --card-shadow-hover: 0px 12px 20px -4px rgba(0, 0, 0, 0.1);
   --card-standard-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.575);
@@ -25,4 +37,13 @@
   align-items: $ai;
   flex-direction: $fd;
   gap: $gap;
+}
+
+.purple_glass {
+  background: rgba(69, 39, 160, 0.739);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }

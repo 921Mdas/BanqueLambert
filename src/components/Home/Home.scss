@@ -1,4 +1,77 @@
-.main_app {
+@import "../../util.scss";
+
+.Home_page {
   width: 100%;
-  padding: 1em;
+  height: 100vh;
+  background: var(--deep-purple);
+}
+
+.welcome_screen {
+  @include flexi(center, center, column, 1em);
+  width: 60%;
+  margin: 0 auto;
+  transform: translateY(50%);
+  color: var(--primary-white);
+
+  h6 {
+    color: var(--primary-light-purple);
+  }
+
+  .logo {
+    font-size: 50px;
+  }
+
+  .welcome_text {
+    text-align: center;
+  }
+}
+
+.login_screen {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 300px;
+  transform: translate(-50%);
+  text-align: center;
+  height: 50%;
+
+  .OR {
+    color: var(--primary-light-purple);
+  }
+
+  .Oauth {
+    margin-bottom: 1em;
+
+    .google {
+      background: var(--button-blue);
+      padding: 10px 0;
+      border-radius: var(--border-radius);
+      color: white;
+    }
+  }
+}
+
+.termsandconditions {
+  color: var(--primary-light-purple);
+  position: absolute;
+  bottom: -20px;
+  font-size: 14px;
+
+  b {
+    color: white;
+  }
+}
+
+.tandcs {
+  color: var(--primary-light-purple) !important;
+}
+
+.create_account {
+  width: 100%;
+  cursor: pointer;
+}
+
+.login_form {
+  display: grid;
+  gap: 10px;
 }

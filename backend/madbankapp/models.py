@@ -17,11 +17,13 @@ class familymembers(models.Model):
         verbose_name_plural = 'familymembers'
 
 class parentallowance(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateField(auto_now_add=True)
     fam_member = models.ForeignKey(familymembers, on_delete= models.CASCADE)
     allowance = models.IntegerField()
     # contributors = models.ManyToManyField(familymembers)
-
+    class Meta:
+        ordering = ['-fam_member']
+        
     def __str__(self):
         return f'{self.fam_member} contributed {self.allowance} on {self.timestamp}'
 

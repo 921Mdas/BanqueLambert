@@ -19,7 +19,6 @@ import {
 const AllowanceForm = ({ sendData, updateInfo, acc2update }) => {
   const [showform, setShowForm] = useState(false);
   const AccToUpdate = acc2update[0];
-  console.log(AccToUpdate);
   const handleShowForm = () => {
     setShowForm(!showform);
   };
@@ -55,7 +54,6 @@ const AllowanceForm = ({ sendData, updateInfo, acc2update }) => {
     formik.initialValues.allowance = AccToUpdate?.allowance;
     formik.initialValues.fam_member = AccToUpdate?.fam_member_id;
     formik.initialValues.timestamp = AccToUpdate?.timestamp;
-    console.log(formik.initialValues.allowance);
   }, [updateInfo]);
 
   return (
@@ -64,7 +62,7 @@ const AllowanceForm = ({ sendData, updateInfo, acc2update }) => {
         <span>
           <MdOutlineSendToMobile className="phone_icon" />
         </span>
-        <h5>
+        <h5 className="form_submit_title">
           {updateInfo
             ? `Modifier la contribution de ${AccToUpdate.name}`
             : `Ajouter une

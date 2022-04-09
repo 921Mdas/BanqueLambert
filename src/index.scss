@@ -1,10 +1,12 @@
+@import "./components/Profile/Profile.scss";
 @import "./components/Allowance/Allowance.scss";
 @import "./components/construction/construction.scss";
-@import "./components/Home/Home.scss";
+@import "./components/Mensuels/AllowancePage.scss";
 @import "./components/Allowance/summary/Total.scss";
 @import "./util.scss";
 @import "./components/Allowance/TrendingGraph/TrendingG.scss";
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap");
+@import "./components/Home/Home.scss";
 
 *,
 *::before,

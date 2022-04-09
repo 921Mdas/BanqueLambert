@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "../Home/Home.scss";
+import "./AllowancePage.scss";
 import { getFamilyMembers } from "../../store/actions/index.actions";
 
 // components
 import ALLOWANCE from "../Allowance/Allowance";
 import CONSTRUCTION from "../construction/construction";
 
-const Home = () => {
+const AllowancePage = () => {
   const FAMILY_MEMBERS = useSelector(state => state.Default_Reducer);
-
+  const [globalEvent, setglobalEvent] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,10 +20,9 @@ const Home = () => {
     <>
       <div className="main_app">
         <ALLOWANCE />
-        <CONSTRUCTION />
       </div>
     </>
   );
 };
 
-export default Home;
+export default AllowancePage;
