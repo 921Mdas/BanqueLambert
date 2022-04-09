@@ -1,1 +1,13 @@
 @import "../../../util.scss";
+
+.allowance_graph {
+  border-radius: var(--border-radius);
+  background: var(--primary-white);
+  box-shadow: var(--card-standard-shadow);
+  padding: 5px 0;
+
+  h6 {
+    font-size: 12px;
+    margin-left: 15px;
+  }
+}

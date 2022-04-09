@@ -16,6 +16,7 @@
   }
   .widget_title {
     font-size: 15px;
+    color: var(--primary-light-purple);
   }
 
   .perc_right {
@@ -63,6 +64,7 @@
 
   h2 {
     grid-column: 1/-1;
+    color: var(--primary-white);
   }
 
   &:hover {
@@ -74,4 +76,40 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 1em;
+
+  .top_right {
+    background: var(--background-blue);
+    overflow: hidden;
+    border: none;
+
+    .widget_title {
+      color: var(--primary-light-blue);
+    }
+    &::before {
+      content: "";
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--primary-light-blue);
+      position: absolute;
+      right: -10%;
+      top: -25%;
+    }
+  }
+
+  .top_left {
+    background: var(--strong-purple);
+    overflow: hidden;
+    border: none;
+    &::before {
+      content: "";
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--deep-purple);
+      position: absolute;
+      right: -10%;
+      top: -25%;
+    }
+  }
 }
