@@ -72,7 +72,7 @@
 
 .detailed_transactions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 
   padding: 10px;
   gap: 1em;
@@ -96,7 +96,7 @@
   .recent_transactions {
     height: 25vh;
     position: relative;
-    background: var(--secondary-yellow);
+    background: var(--primary-light-purple);
 
     .trans_titles {
       color: var(--deep-purple);
@@ -104,8 +104,8 @@
   }
 
   .current_projects {
-    grid-column: 1/3;
     height: 35vh;
+    padding: 0;
   }
 }
 
@@ -123,7 +123,8 @@
 
 .top_title {
   position: absolute;
-  bottom: 2%;
+  bottom: 3%;
+  right: 15%;
 
   h5 {
     color: var(--primary-white);
@@ -131,9 +132,10 @@
 }
 
 .charts_total {
-  width: 100%;
-  height: 50%;
+  width: 90%;
+  height: 60%;
   border-radius: var(--border-radius-10);
+  margin: 0 auto;
 }
 
 .trans_titles {
@@ -145,12 +147,12 @@
   .personal_icon {
     vertical-align: top;
     position: absolute;
-    top: 1px;
+    top: 4px;
   }
 
   p {
     vertical-align: middle;
-    font-size: 12px;
+    font-size: 15px;
     margin-left: 25px;
   }
 }
@@ -163,29 +165,71 @@
     li {
       list-style: none;
       font-size: 12px;
-      border: solid 1px var(--primary-yellow);
-      background: var(--primary-yellow);
-      width: 100%;
+      width: 80%;
+      height: 4vh;
       border-radius: var(--border-radius-10);
       padding: 0 7px;
-      display: flex;
-      span {
-        color: var(--deep-purple);
-      }
+      @include flexi(space-between, center, row, 5px);
     }
   }
 }
 
 .trans_icons {
-  color: var(--primary-white);
+  color: var(--deep-purple);
   vertical-align: bottom;
   margin-top: 3px;
 }
 
 .trans_amount {
-  padding-left: 1em;
+  padding: 0.5em 1em;
+  background-color: var(--primary-green);
+  border-radius: var(--border-radius);
+  color: var(--primary-white);
+}
+
+.date_icon,
+.project_icon {
+  vertical-align: middle;
+  margin-bottom: 2px;
+  margin-right: 3px;
+}
+
+.project {
+  background-color: var(--strong-purple);
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius);
+  color: white;
+}
+
+.project_icon {
+  font-size: 15px;
 }
 
 .stamp {
   margin-left: 20px;
+  background-color: var(--deep-purple);
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius);
+  color: white;
+}
+
+.current_projects_in {
+  border: solid 1px red;
+  height: 100px;
+  padding: 1em;
+}
+
+.transact_recent_icon {
+  font-size: 20px;
+}
+
+.allowance-add-title {
+  @include flexi(center, center, row, 1em);
+  padding: 0.5em 0;
+  color: var(--deep-blue);
+
+  span {
+    font-size: 20px;
+    margin-bottom: 0.5em;
+  }
 }

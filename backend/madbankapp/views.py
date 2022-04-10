@@ -84,6 +84,7 @@ def fam_investments(request):
         inserObject.append(dict(zip(columns,result)))
     return JsonResponse(inserObject, safe=False)
 
+
 # @csrf_exempt
 # def pay_allowance(request):
 #     serializer = myModelSerializer(data = request)

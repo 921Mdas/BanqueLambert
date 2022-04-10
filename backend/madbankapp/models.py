@@ -9,7 +9,6 @@ class familymembers(models.Model):
     city = models.CharField(max_length=100)
     currency = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
     def __str__(self):
         return self.name
     
@@ -31,7 +30,7 @@ class constructionProject(models.Model):
     project = models.CharField(max_length=150)
     description = models.TextField(max_length=300)
     cost = models.IntegerField(null=True)
-
+    #  many to many here
     def __str__(self):
         return f'{self.project} - {self.description}'
 
@@ -40,7 +39,12 @@ class constructionInvestment(models.Model):
     investment = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True)
     phase = models.ForeignKey(constructionProject, on_delete=models.CASCADE)
-
+    # many to many
     def __str__(self):
         return f'investment of {self.person} on project {self.phase} '
 
+class transactiontracker(models.Model):
+    project = models.ForeignKey(constructionProject, on_delete=models.CASCADE)
+    allowance = models.ForeignKey(parentallowance, on_delete=models.CASCADE)
+    person = models.ForeignKey(familymembers, on_delete= models.CASCADE)
+    investment = models.ForeignKey(constructionInvestment, on_delete=models.CASCADE)
