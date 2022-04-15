@@ -1,3 +1,4 @@
+@import "./components/Depenses/Depenses.scss";
 @import "./components/Profile/Profile.scss";
 @import "./components/Allowance/Allowance.scss";
 @import "./components/construction/construction.scss";
@@ -24,6 +25,10 @@ h5,
 h6 {
   padding: 0;
   margin: 0;
+}
+
+html {
+  background: var(--background-maincolor);
 }
 
 body {

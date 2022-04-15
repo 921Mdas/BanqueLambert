@@ -1,5 +1,10 @@
 @import "../../util.scss";
 
+.navbar {
+  border: solid 1px var(--background-maincolor);
+  background: var(--background-maincolor);
+}
+
 .navbar_container {
   width: 50%;
   height: 100%;
@@ -9,6 +14,7 @@
   z-index: 5;
   box-shadow: var(--card-shadow-hover);
   transition: all 0.5s ease-in-out;
+  border: solid 1px var(--background-maincolor);
 }
 
 .closeburger_btn {

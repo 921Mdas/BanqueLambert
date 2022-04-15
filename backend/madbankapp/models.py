@@ -37,14 +37,8 @@ class constructionProject(models.Model):
 class constructionInvestment(models.Model):
     person = models.ForeignKey(familymembers, on_delete= models.CASCADE)
     investment = models.IntegerField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateField(auto_now_add=True)
     phase = models.ForeignKey(constructionProject, on_delete=models.CASCADE)
     # many to many
     def __str__(self):
         return f'investment of {self.person} on project {self.phase} '
-
-class transactiontracker(models.Model):
-    project = models.ForeignKey(constructionProject, on_delete=models.CASCADE)
-    allowance = models.ForeignKey(parentallowance, on_delete=models.CASCADE)
-    person = models.ForeignKey(familymembers, on_delete= models.CASCADE)
-    investment = models.ForeignKey(constructionInvestment, on_delete=models.CASCADE)

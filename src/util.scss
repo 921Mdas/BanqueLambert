@@ -4,11 +4,15 @@
   --border-radius-10: 10px;
   --small-iconsize: 20px;
 
+  // --deep-purple: #4527a0;
+  // --background-maincolor: #e3f3fd;
+
   // colors
   --base-grey: rgb(128, 128, 128);
   --primary-purple: #8884d8;
   --primary-light-purple: #c6c3f8;
-  --background-maincolor: #e3f3fd;
+  --primary-transparent-purple: #c6c3f8b0;
+  --background-maincolor: #777085;
   --strong-purple: #5e35b1;
   --deep-purple: #4527a0;
   --pale-purple: #ede7f6;
@@ -41,6 +45,22 @@
 
 .purple_glass {
   background: rgba(69, 39, 160, 0.739);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.205);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.deep_purple_glass {
+  background: #4527a0;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.205);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.white_glass {
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);

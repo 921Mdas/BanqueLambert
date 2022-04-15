@@ -1,6 +1,9 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer, Suspense } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getParentAllowance } from "../../store/actions/index.actions";
+import {
+  getDetailedData,
+  getParentAllowance,
+} from "../../store/actions/index.actions";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,26 +11,31 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useNavigate } from "react-router-dom";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineBank } from "react-icons/ai";
 import { SiFampay } from "react-icons/si";
+import { Form, Button } from "react-bootstrap";
+
 import {
   AiTwotoneEdit,
   AiOutlineArrowRight,
   AiOutlineArrowLeft,
 } from "react-icons/ai";
-import { BsFillPersonFill } from "react-icons/bs";
+import { AiFillEye } from "react-icons/ai";
+import { FcFolder } from "react-icons/fc";
 import axios from "axios";
 import { toast } from "react-toastify";
 import TOTAL from "./summary/Total";
 import {
   PARENT_ALLOWANCE_API,
   PARENT_ALLOWANCE_DELETE,
+  DETAIL_VIEW,
+  DETAIL_ROUTE,
 } from "../../help.config";
 
 // components
-
 import AllowanceForm from "./Allow_form";
 import TrendingG from "./TrendingGraph/TrendingG";
 
@@ -35,15 +43,26 @@ const ALLOWANCE = () => {
   const [load, setLoad] = useState(false);
   const [updateinfo, setupdateinfo] = useState(false);
   const [account2update, setaccount2update] = useState({});
+  const navigate = useNavigate();
 
+  // get allowance data
   const ALLOWANCE_SPONSORS = useSelector(
     state => state.Default_Reducer.parentAllowance
   );
-  const dispatch = useDispatch();
+  const STATE = useSelector(state => state.Default_Reducer);
+
+  useEffect(() => {
+    localStorage.setItem("stateStored", JSON.stringify(STATE));
+  }, [STATE]);
+
+  console.log(ALLOWANCE_SPONSORS);
+
+  // rows for table
   const rows = ALLOWANCE_SPONSORS;
   const sortedRows = rows?.sort((a, b) => (a.id > b.id ? -1 : 1));
 
-  console.log("sorted rows", sortedRows);
+  // make call for detail voiew
+  const dispatch = useDispatch();
 
   const sendData = async (url, data) => {
     await axios.post(url, data);
@@ -57,9 +76,10 @@ const ALLOWANCE = () => {
   };
 
   const deleteOne = idx => {
-    axios.post(`${PARENT_ALLOWANCE_DELETE}${idx}/`);
-    console.log("click");
-    window.location.reload(true);
+    axios.post(`${PARENT_ALLOWANCE_DELETE}${idx}/`).then(() => {
+      window.location.reload(true);
+    });
+    console.log("deleted");
   };
 
   const updateOne = idx => {
@@ -68,6 +88,11 @@ const ALLOWANCE = () => {
     );
     setaccount2update(filteredAllowance);
     setupdateinfo(true);
+  };
+
+  const detailView = async id => {
+    await dispatch(getDetailedData(id));
+    navigate(`${DETAIL_ROUTE}${id}`);
   };
 
   useEffect(() => {
@@ -108,7 +133,6 @@ const ALLOWANCE = () => {
                 <TableCell>Membre</TableCell>
                 <TableCell align="center">Paiement</TableCell>
                 <TableCell align="center">Date</TableCell>
-                <TableCell align="center">Ville</TableCell>
                 <TableCell align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -123,9 +147,11 @@ const ALLOWANCE = () => {
                       component="th"
                       scope="row"
                       className="pers_allowance_parent"
+                      onClick={() => detailView(row.fam_member_id)}
                     >
-                      <BsFillPersonFill className="person_allowance" />{" "}
-                      {row.name}
+                      <div className="person_view_portal">
+                        <FcFolder className="person_allowance" /> {row.name}
+                      </div>
                     </TableCell>
                     <TableCell align="center" className="payment_tab">
                       <span className="money_in">
@@ -136,7 +162,6 @@ const ALLOWANCE = () => {
                     <TableCell align="center">
                       {row.timestamp.substring(0, 10)}
                     </TableCell>
-                    <TableCell align="center">{row.city}</TableCell>
                     <TableCell
                       align="center"
                       sx={{ width: "10px", backgroundColor: "grey" }}
