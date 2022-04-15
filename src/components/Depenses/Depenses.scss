@@ -1,0 +1,79 @@
+@import "../../util.scss";
+
+.depenses {
+  padding: 1em;
+  background: var(--background-maincolor);
+  width: 100%;
+  height: 100vh;
+  border: solid 1px var(--background-maincolor);
+  @include flexi(flex-start, center, column, 1em);
+  margin-bottom: 8vh;
+
+  .depense_icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+
+  .depenses_title {
+    @include flexi(center, center, row, 1em);
+    gap: 1em;
+    height: max-content;
+    background-color: var(--deep-purple);
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 104px;
+    color: var(--primary-light-purple);
+  }
+}
+
+.expenses_detail_chart {
+  width: 100%;
+  height: 35vh;
+  padding: 5px;
+  @extend .deep_purple_glass;
+  position: relative;
+
+  h6 {
+    color: var(--primary-white);
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+}
+
+.list_of_expenses {
+  width: 100%;
+  @extend .white_glass;
+}
+
+.expenses_item {
+  width: 100%;
+  height: 10vh;
+  padding: 0 1em;
+  @include flexi(space-between, center, row, 1em);
+}
+
+.description_expense {
+  @include flexi(center, center, row, 1em);
+  color: var(--primary-white);
+
+  .depense_icon_list {
+    font-size: 40px;
+  }
+
+  .expense_info {
+    margin-bottom: 10px;
+  }
+
+  .due {
+    color: var(--primary-white);
+    font-size: 14px;
+    position: absolute;
+    top: 55%;
+  }
+}
+
+.cost_price_expense {
+  color: var(--primary-white);
+  font-size: 20px;
+}

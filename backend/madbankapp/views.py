@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import familymembers,parentallowance
+from .models import familymembers,parentallowance, constructionInvestment
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 from .serializer import myModelSerializer
@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import generics,status
+import json
 
 # Create your views here.
 
@@ -83,6 +84,21 @@ def fam_investments(request):
     for result in results:
         inserObject.append(dict(zip(columns,result)))
     return JsonResponse(inserObject, safe=False)
+
+class transactions(APIView):
+    def get(self,request,pk):
+        try:
+            allowance = parentallowance.objects.filter(fam_member_id=pk).values()
+            constructionmoney = constructionInvestment.objects.filter(person_id=pk).values()
+            detaildatarr = []
+            constructiondata = list(constructionmoney)
+            allowancedata = list(allowance)
+            detaildatarr.append(allowancedata)
+            detaildatarr.append(constructiondata)
+            return JsonResponse(detaildatarr, safe=False)
+        except:
+            return Response("Not found in database")
+           
 
 
 # @csrf_exempt

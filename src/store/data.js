@@ -3,6 +3,7 @@ import {
   FAMILY_MEMBERS_API,
   PARENT_ALLOWANCE_API,
   MPASSA_API,
+  DETAIL_VIEW,
 } from "../help.config";
 
 // GET

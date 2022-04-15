@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import photo1 from "../../multimedia/photo_profile1.jpeg";
+import { Button } from "react-bootstrap";
+import { Number, Currency } from "react-intl-number-format";
 import {
   LineChart,
   Line,
@@ -12,32 +14,65 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useSelector, useDispatch } from "react-redux";
-
 import Join_project_form from "./Join_project_form";
-
 import {
   AiTwotoneEdit,
   AiOutlineArrowRight,
   AiOutlineArrowLeft,
 } from "react-icons/ai";
+
 import { BsCardHeading } from "react-icons/bs";
-import { GiPayMoney } from "react-icons/gi";
+import { RiVisaLine } from "react-icons/ri";
+import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import AllowanceForm from "../Allowance/Allow_form";
 import Allowance from "../Allowance/Allowance";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { PARENT_ALLOWANCE_DELETE, UPDATE_ALLOWANCE } from "../../help.config";
+import {
+  PARENT_ALLOWANCE_DELETE,
+  UPDATE_ALLOWANCE,
+  DETAIL_ROUTE,
+} from "../../help.config";
+import {
+  getDetailedData,
+  getParentAllowance,
+} from "../../store/actions/index.actions";
+import { style } from "@mui/system";
 
-const Profile = () => {
+const FinalProfile = () => {
+  const STATE = useSelector(state => state.Default_Reducer);
+  const [savedState, setSavedState] = useState(STATE);
+
+  useEffect(async () => {
+    await localStorage.getItem("stateStored");
+    if (localStorage.getItem("stateStored")) {
+      setSavedState(JSON.parse(localStorage.getItem("stateStored")));
+    }
+
+    console.log("saved state", savedState);
+  }, []);
+
+  return <Profile state={savedState} />;
+};
+
+const Profile = ({ state }) => {
+  // local methods
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
   const [updateinfo, setupdateinfo] = useState(false);
   const [account2update, setaccount2update] = useState({});
-  const ALLOWANCE_SPONSORS = useSelector(
-    state => state.Default_Reducer.parentAllowance
-  );
+  const [toggleData, setToggleData] = useState(false);
+  const { idnum } = useParams();
+
+  // access the state
+  const STATE = state;
+  const ALLOWANCE_SPONSORS = STATE.parentAllowance;
+  const TRANSACTIONS = STATE.transactions;
+
+  // post allowance from profile
   const sendData = async (url, data) => {
     await axios.post(url, data).then(() => {
       navigate("/mensuels");
@@ -51,164 +86,152 @@ const Profile = () => {
     }, 1000);
   };
 
-  const deleteOne = idx => {
-    axios.post(`${PARENT_ALLOWANCE_DELETE}${idx}/`);
-    console.log("click");
-    window.location.reload(true);
+  // dispatch
+
+  // display total allowance / total investment
+  const toggleAllowanceInvestment = () => {
+    setToggleData(!toggleData);
   };
-
-  const updateOne = idx => {
-    const filteredAllowance = ALLOWANCE_SPONSORS.filter(
-      allowance => allowance.id === idx
-    );
-    setaccount2update(filteredAllowance);
-    setupdateinfo(true);
-  };
-
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
-  return (
-    <>
-      <div className="personal_profile">
-        <div className="header">
-          <div className="personal_details">
-            <div className="profile_photo">
-              <img src={photo1} />
-            </div>
-            <div className="personal_info">
-              <h5 className="name">John Doe</h5>
-              <h6 className="city">Paris</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="detailed_transactions">
-        <div className="total_transactions detail_card">
-          <div className="trans_titles">
-            <BsCardHeading className="personal_icon" />
-            <p>Contributions / Total</p>
-          </div>
-
-          <div className="charts_total">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart width={200} height={100} data={data}>
-                <Line
-                  type="monotone"
-                  dataKey="pv"
-                  stroke="#8884d8"
-                  strokeWidth={2}
-                />
-                <Tooltip />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="top_title">
-            <h5 className="total_personal_contributions">
-              <span>Total:</span> 3000 <span>$</span>
-            </h5>
-          </div>
-        </div>
-        <div className="recent_transactions detail_card">
-          <div className="trans_titles">
-            <GiPayMoney className="personal_icon transact_recent_icon" />
-            <p>Paiements recents</p>
-          </div>
-          <div className="transactions">
-            <ul>
-              <li>
-                <AiOutlineArrowRight className="trans_icons" />
-                <span className="trans_amount">500 $</span>
-                <div className="stamp">
-                  <span>
-                    <BsCalendar2Date className="date_icon" /> 22/03/11
-                  </span>
-                </div>
-                <span className="project">
-                  <AiOutlineFundProjectionScreen className="project_icon" />{" "}
-                  Mpassa
-                </span>
-              </li>
-              <li>
-                <AiOutlineArrowRight className="trans_icons" />
-                <span className="trans_amount">500 $</span>
-                <div className="stamp">
-                  <span>
-                    <BsCalendar2Date className="date_icon" /> 22/03/11
-                  </span>
-                </div>
-                <span className="project">
-                  <AiOutlineFundProjectionScreen className="project_icon" />{" "}
-                  Mpassa
-                </span>
-              </li>
-              <li>
-                <AiOutlineArrowRight className="trans_icons" />
-                <span className="trans_amount">500 $</span>
-                <div className="stamp">
-                  <span>
-                    <BsCalendar2Date className="date_icon" /> 22/03/11
-                  </span>
-                </div>
-                <span className="project">
-                  <AiOutlineFundProjectionScreen className="project_icon" />{" "}
-                  Mpassa
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="current_projects">
-          <AllowanceForm
-            sendData={sendData}
-            updateInfo={updateinfo}
-            acc2update={account2update}
-          />
-        </div>
-      </div>
-    </>
+  const transA = TRANSACTIONS && TRANSACTIONS[0];
+  const transB = TRANSACTIONS && TRANSACTIONS[1];
+  console.log("transaction A", STATE);
+  const alltransactions = [];
+  if (transA) {
+    alltransactions.push(...transA);
+  }
+  if (transB) {
+    alltransactions.push(...transB);
+  }
+  const sortedTransactions = alltransactions.sort((a, b) =>
+    a.timestamp > b.timestamp ? -1 : 1
   );
+
+  const allowances_total = alltransactions
+    .filter(trans => trans?.allowance)
+    .reduce((acc = 0, curVal) => {
+      return (acc += +curVal?.allowance);
+    }, 0);
+
+  const investments_total = alltransactions
+    .filter(trans => trans?.investment)
+    .reduce((acc = 0, curVal) => {
+      return (acc += +curVal?.investment);
+    }, 0);
+
+  const allSUM = investments_total + allowances_total;
+
+  const detailedUser = ALLOWANCE_SPONSORS?.filter(
+    member => member.fam_member_id === +idnum
+  );
+
+  const mydetails = detailedUser && detailedUser[0];
+  const totalContrib =
+    detailedUser &&
+    detailedUser.reduce((acc, val) => {
+      acc += val;
+      return acc;
+    }, 0);
+
+  if (!sortedTransactions) {
+    return <h1>oops something went wrong</h1>;
+  }
+
+  if (sortedTransactions) {
+    console.log(sortedTransactions, "sorted");
+    return (
+      <>
+        <div className="personal_profile">
+          <div className="header">
+            <div className="personal_details">
+              <div className="profile_photo">
+                <img src={photo1} />
+              </div>
+              <div className="personal_info">
+                <h5 className="name">{mydetails?.name} - contributions</h5>
+                <h6 className="city">{mydetails?.city}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="detailed_transactions">
+          <div className="total_transactions detail_card">
+            <div className="trans_titles">
+              <RiVisaLine className="personal_icon_visa" />
+              <Button
+                onClick={toggleAllowanceInvestment}
+                className="toggle_btn_contribution"
+              >
+                {toggleData ? "Provision" : "Construction"}
+              </Button>
+            </div>
+
+            <div className="top_title">
+              <div className="total_personal_contributions">
+                <h6>Contribution Totale</h6>
+                <div className="numbers">
+                  <span>Total:</span>
+                  <Number locale="en-US" currency="USD">
+                    {allSUM}
+                  </Number>
+                  <span>$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="recent_transactions detail_card">
+            <div className="trans_titles">
+              <BsCardHeading className="personal_icon transact_recent_icon" />
+              <p>Paiements recents</p>
+            </div>
+            <div className="transactions">
+              <ul>
+                {sortedTransactions &&
+                  sortedTransactions.map(trans => {
+                    return (
+                      <li key={trans?.id}>
+                        <AiOutlineArrowRight className="trans_icons" />
+                        <span className="trans_amount">
+                          {trans?.allowance
+                            ? trans?.allowance
+                            : trans?.investment}{" "}
+                          $
+                        </span>
+                        <div className="stamp">
+                          <span>
+                            <BsCalendar2Date className="date_icon" />{" "}
+                            {trans?.timestamp?.substring(0, 10)}
+                          </span>
+                        </div>
+                        <span className="project">
+                          {trans?.investment ? (
+                            <div>
+                              <AiOutlineFundProjectionScreen className="project_icon" />
+                              <span> Mpassa</span>
+                            </div>
+                          ) : (
+                            <div>
+                              <MdOutlineLocalGroceryStore className="project_icon" />
+                              <span>Mensuel</span>
+                            </div>
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+          </div>
+          <div className="current_projects">
+            <AllowanceForm
+              sendData={sendData}
+              updateInfo={updateinfo}
+              acc2update={account2update}
+            />
+          </div>
+        </div>
+      </>
+    );
+  }
 };
 
-export default Profile;
+export default FinalProfile;

@@ -41,10 +41,10 @@
     }
 
     .person_allowance {
-      background: var(--base-grey);
       border-radius: 50%;
-      font-size: 15px;
+      font-size: 20px;
       padding: 2px;
+      margin-right: 5px;
       color: white;
     }
 
@@ -183,6 +183,17 @@
     color: white;
     font-size: 20px;
   }
+}
+
+.pers_allowance_parent {
+  background: var(--primary-transparent-purple);
+}
+
+.person_view_portal {
+  background-color: var(--deep-purple);
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 4px 5px;
 }
 
 .bounce {

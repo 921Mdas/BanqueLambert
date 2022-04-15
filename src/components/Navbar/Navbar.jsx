@@ -85,7 +85,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  to="/"
+                  to="/depenses"
                   className="navigation_links"
                   onClick={() => activeCloseMenu()}
                 >
@@ -158,7 +158,7 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/" className="bottom_menu_links">
+            <Link to="/depenses" className="bottom_menu_links">
               <li>
                 <FaRegMoneyBillAlt className="icon_menu_bottom" />
                 <span>Depenses</span>

@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import ReduxStore from "./store/index_store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
+import FinalProfile from "./components/Profile/Profile";
+import Depenses from "./components/Depenses/Depenses";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +22,8 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/mensuels" element={<AllowancePage />} />
-          <Route path="/detail/:id" element={<Profile />} />
+          <Route path="/depenses" element={<Depenses />} />
+          <Route path="mensuels/detail/:idnum" element={<FinalProfile />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
