@@ -113,7 +113,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  to="/"
+                  to="/construction"
                   className="navigation_links"
                   onClick={() => activeCloseMenu()}
                 >
@@ -172,7 +172,7 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <Link to="/" className="bottom_menu_links">
+            <Link to="/construction" className="bottom_menu_links">
               <li>
                 <BsBuilding className="icon_menu_bottom" />
                 <span>Construction</span>

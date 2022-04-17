@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import FinalProfile from "./components/Profile/Profile";
 import Depenses from "./components/Depenses/Depenses";
+import Construction from "./components/construction/construction";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +24,7 @@ ReactDOM.render(
           <Route path="/" element={<Home />} />
           <Route path="/mensuels" element={<AllowancePage />} />
           <Route path="/depenses" element={<Depenses />} />
+          <Route path="/construction" element={<Construction />} />
           <Route path="mensuels/detail/:idnum" element={<FinalProfile />} />
         </Routes>
       </BrowserRouter>

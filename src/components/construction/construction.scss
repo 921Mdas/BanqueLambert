@@ -1,0 +1,117 @@
+@import "../../util.scss";
+
+.construction {
+  padding: 1em;
+  background: var(--background-maincolor);
+  width: 100%;
+  height: 100vh;
+  border: solid 1px var(--background-maincolor);
+  @include flexi(flex-start, center, column, 1em);
+  margin-bottom: 8vh;
+}
+
+.construction_title {
+  @include flexi(center, center, row, 1em);
+  gap: 1em;
+  min-height: 104px;
+  background-color: var(--deep-purple);
+  border-radius: var(--border-radius);
+  width: 100%;
+  color: var(--primary-light-purple);
+  .construction_icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+}
+
+.phase_desc {
+  width: 50%;
+  color: var(--base-grey);
+}
+
+.total_received_construction img {
+  width: 100px;
+  position: absolute;
+  right: 20px;
+  top: 140px;
+}
+
+.constructions_total {
+  background-color: var(--deep-purple);
+  margin-bottom: 10px;
+  border-radius: var(--border-radius);
+}
+
+.total_construction_amount {
+  @include flexi(flex-start, center, row, 2px);
+  font-size: 2rem;
+  color: rgb(214, 218, 219);
+}
+.icon_construction_money {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.phases_descriptions {
+  width: 100%;
+}
+.Phase_Widget {
+  width: 100%;
+  overflow: hidden;
+  background: whitesmoke;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 80px;
+  }
+}
+
+.table {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+thead {
+  background: var(--deep-purple);
+  width: 90%;
+  color: var(--primary-white) !important;
+
+  tr {
+    width: 90%;
+    text-align: center;
+    td {
+      padding: 10px;
+    }
+  }
+}
+
+tbody {
+  tr {
+    width: 90%;
+    text-align: center;
+
+    td {
+      padding: 10px;
+    }
+  }
+}
+.phase_title {
+  border: solid 1px whitesmoke;
+  position: relative;
+  color: var(--deep-purple);
+}
+.total_phase_desc_sections {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--deep-purple);
+  h5 {
+    color: var(--base-grey);
+  }
+  h3 {
+    text-align: right;
+  }
+}
