@@ -130,10 +130,16 @@ const ALLOWANCE = () => {
           <Table sx={{ maxWidth: "100%" }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Membre</TableCell>
-                <TableCell align="center">Paiement</TableCell>
-                <TableCell align="center">Date</TableCell>
-                <TableCell align="center">Actions</TableCell>
+                <TableCell className="tab_mensuels">Membre</TableCell>
+                <TableCell className="tab_mensuels" align="center">
+                  Paiement
+                </TableCell>
+                <TableCell className="tab_mensuels" align="center">
+                  Date
+                </TableCell>
+                <TableCell className="tab_mensuels" align="center">
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

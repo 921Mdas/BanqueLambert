@@ -7,11 +7,15 @@ import { BsBuilding } from "react-icons/bs";
 import { MPASSA_API } from "../../help.config";
 import { Number, Currency } from "react-intl-number-format";
 import constrPic from "../../multimedia/construction_icon.png";
+import { UPLOAD_PHOTO } from "../../help.config";
 import {
   AiOutlineArrowUp,
   AiOutlineArrowDown,
   AiOutlineArrowRight,
 } from "react-icons/ai";
+import axios from "axios";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Construction = () => {
   const STATE = useSelector(state => state.Default_Reducer);
@@ -99,6 +103,9 @@ const CONSTRUCTION = ({ state }) => {
       <div className="phases_descriptions">
         <ConstructionPHASE data={project_phases} phase_cost={uniqueCosts} />
       </div>
+      <div className="upload_schema">
+        <PhotoUpload />
+      </div>
     </div>
   );
 };
@@ -174,4 +181,71 @@ const ConstructionPHASE = ({ data, phase_cost }) => {
   });
 };
 
+const PhotoUpload = () => {
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  // const formik = useFormik({
+  //   initialValues: {
+  //     photo-file: "",
+  //   },
+
+  //   onSubmit: (values, { resetForm }) => {
+  //     uploadDataPhoto(values);
+  //   },
+  // });
+
+  var csrftoken = getCookie("csrftoken");
+
+  const options = {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+  };
+
+  const uploadDataPhoto = async () => {
+    await axios.post(UPLOAD_PHOTO, options);
+  };
+
+  return (
+    <form
+      action={UPLOAD_PHOTO}
+      encType="multipart/form-data"
+      className="aws-upload"
+    >
+      <input
+        type="file"
+        name="photo-file"
+        id="photo-file"
+        // {...formik.getFieldProps("photo_file")}
+      />
+      <br />
+      <br />
+      <input
+        type="submit"
+        className="btn-upload"
+        value="Upload Photo"
+        onClick={() => uploadDataPhoto()}
+      />
+      <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
+    </form>
+  );
+};
+
 export default Construction;
+
+// aws key AKIAU4TCSRF2NMT5AM6T
+// aws secret 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

@@ -1,6 +1,8 @@
 from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your models here.
 
@@ -42,3 +44,11 @@ class constructionInvestment(models.Model):
     # many to many
     def __str__(self):
         return f'investment of {self.person} on project {self.phase} '
+
+
+class constructionPhotos(models.Model):
+    url= models.CharField(max_length=200)
+    phase = models.ForeignKey(constructionProject,blank=True ,on_delete=models.CASCADE)
+
+    def __str__(self):
+     return f"Photos construction: {self.phase.project} @{self.url}"

@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import familymembers,parentallowance, constructionInvestment
+from .models import familymembers,parentallowance, constructionInvestment,constructionPhotos
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 from .serializer import myModelSerializer
@@ -9,7 +9,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import generics,status
+
 import json
+import uuid
+import boto3
+S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
+BUCKET = 'madbanklambert'
 
 # Create your views here.
 
@@ -98,7 +103,26 @@ class transactions(APIView):
             return JsonResponse(detaildatarr, safe=False)
         except:
             return Response("Not found in database")
-           
+
+@csrf_exempt    
+def upload(request):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = constructionPhotos(url=url)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('http://localhost:3000/construction')
 
 
 # @csrf_exempt
