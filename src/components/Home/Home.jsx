@@ -1,9 +1,48 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SiFampay } from "react-icons/si";
 import { Form, Button } from "react-bootstrap";
+import { GoogleLogin } from "react-google-login";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem("loginData")
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null
+  );
+
+  const handleLogin = async googleData => {
+    navigate("/mensuels");
+    // const res = await fetch("http://127.0.0.1:8000/accounts/google/login/", {
+    //   method: "POST",
+    //   body: JSON.stringify({ token: googleData.tokenId }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+
+    // const data = await res.json();
+    // setLoginData(data);
+
+    // data ? navigate("/mensuels") : navigate("/mensuels");
+    // localStorage.setItem("loginData", JSON.stringify(data));
+  };
+
+  const handleFailure = err => {
+    console.log(err);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loginData");
+    setLoginData(null);
+  };
+
+  // useEffect(() => {
+  //   if (!loginData) return;
+  //   dispatch({ type: COMMANDS.UPDATE_USERONLINE, payload: loginData });
+  // }, [loginData]);
+
   return (
     <div className="Home_page">
       <div className="welcome_screen">
@@ -17,7 +56,16 @@ const Home = () => {
       </div>
       <div className="login_screen">
         <div className="Oauth">
-          <h3 className="google">Connect with Google</h3>
+          <GoogleLogin
+            className="loginBtn"
+            clientId={
+              "491779798833-rfagv3dr6d8fks8ninet3narhrdlvpfm.apps.googleusercontent.com"
+            }
+            buttonText="Log in with Google"
+            onSuccess={handleLogin}
+            onFailure={handleFailure}
+            cookiePolicy={"single_host_origin"}
+          ></GoogleLogin>
         </div>
 
         <p className="OR">OR</p>

@@ -20,5 +20,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('madbankapp.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
+
+# 491779798833-rfagv3dr6d8fks8ninet3narhrdlvpfm.apps.googleusercontent.com  key
+# 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   secret
