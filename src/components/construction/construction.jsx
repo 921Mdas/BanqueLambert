@@ -199,6 +199,7 @@ const PhotoUpload = () => {
   // const formik = useFormik({
   //   initialValues: {
   //     photo-file: "",
+
   //   },
 
   //   onSubmit: (values, { resetForm }) => {
@@ -246,6 +247,3 @@ const PhotoUpload = () => {
 };
 
 export default Construction;
-
-// aws key AKIAU4TCSRF2NMT5AM6T
-// aws secret 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
