@@ -34,4 +34,4 @@ Some temporary Screen shots on the mobile version
 ![image](https://user-images.githubusercontent.com/66809588/178779894-c15df403-8911-43cc-a90c-264e0e7db36f.png)
 
 
-| Day 3 |	Testing data with postman, Class Based View Api Testing |
+
