@@ -30,8 +30,8 @@ Family Bank application to manage family projects, family expenses and contribut
 
 Some temporary Screen shots on the mobile version
 
-<img width="370" alt="image" src="https://user-images.githubusercontent.com/66809588/175645414-953b09a8-6d11-4921-a0ca-29f413f73f6b.png">
-<img width="434" alt="image" src="https://user-images.githubusercontent.com/66809588/175645868-34871bed-4f08-400b-9c5f-b675500c66fb.png">
-<img width="450" alt="image" src="https://user-images.githubusercontent.com/66809588/175645923-811323c5-6195-4cdb-9aa5-3c6cc511231d.png">
-<img width="441" alt="image" src="https://user-images.githubusercontent.com/66809588/175646006-014c4b7c-7749-473a-a9ae-26fae9c16067.png">
-<img width="417" alt="image" src="https://user-images.githubusercontent.com/66809588/175646060-48da4419-a450-4b28-84e3-bff7ffc28cda.png">
+![image](https://user-images.githubusercontent.com/66809588/178776314-0969d309-bdf9-4bd3-aa2e-9b9d78ec9e27.png)
+![image](https://user-images.githubusercontent.com/66809588/178779894-c15df403-8911-43cc-a90c-264e0e7db36f.png)
+
+
+| Day 3 |	Testing data with postman, Class Based View Api Testing |
